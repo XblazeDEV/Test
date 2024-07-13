@@ -12,6 +12,19 @@ echo "Updating dependencies..."
 apt-get update
 echo "Done"
 
-echo "Installed test"
+echo "Adding test to PATH..."
+if [ -f ~/.bashrc ]; then
+    echo 'export PATH=$PATH:/usr/local/bin' >> ~/.bashrc
+    echo 'alias test="/usr/local/bin/test"' >> ~/.bashrc
+elif [ -f ~/.bash_profile ]; then
+    echo 'export PATH=$PATH:/usr/local/bin' >> ~/.bash_profile
+    echo 'alias test="/usr/local/bin/test"' >> ~/.bash_profile
+else
+    echo 'export PATH=$PATH:/usr/local/bin' >> ~/.profile
+    echo 'alias test="/usr/local/bin/test"' >> ~/.profile
+fi
+echo "Done"
+
+echo "Installed app 'test'. Execute with command 'test'."
 
 exit 0
